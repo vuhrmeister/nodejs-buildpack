@@ -130,8 +130,8 @@ install_meteor_dist() {
     rm -rf "$METEOR_HOME/.meteor"
   fi
 
-  # tarball_url="https://d3sqy0vbqsdhku.cloudfront.net/packages-bootstrap/${release}/meteor-bootstrap-${platform}.tar.gz"
-  tarball_url="https://github.com/meteor/meteor/archive/release/METEOR@1.7-rc.11.tar.gz"
+  tarball_url="https://d3sqy0vbqsdhku.cloudfront.net/packages-bootstrap/1.6.1/meteor-bootstrap-${platform}.tar.gz"
+  # tarball_url="https://github.com/meteor/meteor/archive/release/METEOR@1.7-rc.11.tar.gz"
 
   header "Downloading Meteor distribution: ${tarball_url}"
   curl --silent --fail "${tarball_url}" | tar -xzf - -C "${METEOR_HOME}" -o
