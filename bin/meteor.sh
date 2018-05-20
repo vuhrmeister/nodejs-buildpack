@@ -16,14 +16,11 @@ get_meteor_minor_version() {
 
 # Format of .meteor/release file is METEOR@1.4.x-patchsomething
 meteor_node_version() {
-  version=$(meteor node -v)
-  cleanedVersion=${version//[v]/}
-  echo cleanedVersion
+  echo "8.11.2"
 }
 
 meteor_npm_version() {
-  version=$(meteor node -v)
-  echo version
+  echo "5.10.0"
 }
 
 setup_meteor_build_environment() {
