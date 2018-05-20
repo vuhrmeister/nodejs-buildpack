@@ -103,8 +103,10 @@ install_bins() {
   local yarn_engine=$(read_json "$BUILD_DIR/package.json" ".engines.yarn")
 
   if [ -n "${meteor_version}" ] ; then
-    [ -z "$node_engine" ] && node_engine=$(meteor_node_version "${meteor_version}")
-    [ -z "$npm_engine" ]  && npm_engine=$(meteor_npm_version "${meteor_version}")
+    setup_meteor_build_environment
+    install_meteor $BUILD_DIR $CACHE_DIR
+    [ -z "$node_engine" ] && node_engine=$(meteor_node_version)
+    [ -z "$npm_engine" ]  && npm_engine=$(meteor_npm_version)
   fi
 
   if [ -n "$iojs_engine" ]; then

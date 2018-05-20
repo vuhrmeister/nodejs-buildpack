@@ -16,25 +16,14 @@ get_meteor_minor_version() {
 
 # Format of .meteor/release file is METEOR@1.4.x-patchsomething
 meteor_node_version() {
-  minor=$(get_meteor_minor_version)
-  if [ "$minor" -ge 6 ] ; then
-    echo "8.8.x"
-  elif [ "$minor" -ge 4 ] ; then
-    echo "4.8.x"
-  else
-    echo "0.10.x"
-  fi
+  version=$(meteor node -v)
+  cleanedVersion=${version//[v]/}
+  echo cleanedVersion
 }
 
 meteor_npm_version() {
-  minor=$(get_meteor_minor_version)
-  if [ "$minor" -ge 6 ] ; then
-    echo "5.x"
-  elif [ "$minor" -ge 4 ] ; then
-    echo "4.6.x"
-  else
-    echo "3.x"
-  fi
+  version=$(meteor node -v)
+  echo version
 }
 
 setup_meteor_build_environment() {
@@ -236,7 +225,6 @@ build_meteor_app() {
   METEOR_HOME="$build_dir/.meteor-install"
   [ -e "$build_dir/.meteor/release" ] && meteor_version=$(get_meteor_version $build_dir)
 
-  install_meteor "$build_dir" "$cache_dir"
   export PATH=$PATH:${METEOR_HOME}/.meteor
 
   check_meteorhacks_npm
